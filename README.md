@@ -4,8 +4,9 @@ GUI to simplify printing on campus
 - [x] Base GUI
 - [x] Base Backend
 - [x] PDF splitting
+- [ ] Browse Path
 - [ ] Complete GUI
-- [ ] Complete backend
+- [ ] Complete Backend
 - [ ] Printing
 - [ ] .exe
 
