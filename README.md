@@ -2,7 +2,7 @@
 GUI to simplify printing on campus
 
 - [x] Base GUI
-- [x] Base Backedn
+- [x] Base Backend
 - [ ] PDF splitting
 - [ ] Complete GUI
 - [ ] Complete backend
