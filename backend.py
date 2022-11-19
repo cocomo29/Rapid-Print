@@ -9,15 +9,14 @@ class Backend:
         self.start = int(start) if not type(start) == str else 0
         self.end = int(end) if not type(end) == str else 0
         self.pages = [i for i in range(start, end)]
+        self.file = None
 
     def divider(self):
-        with open("rapid.pdf", "rb") as f:
+        with open(self.file if self.file else 'rapid.pdf', "rb") as f:
             reader = PdfFileReader(f)
             writer = PdfFileWriter()
-            # rest_writer = PdfFileWriter()
             pdfs = []
             pages_in_pdf = len(reader.pages)
-            # mid = pages_in_pdf // 2
             
             for i in range(0, pages_in_pdf, 10):
                 writer = PdfFileWriter()
@@ -39,6 +38,9 @@ class Backend:
             if file.endswith(".pdf"):
                 os.startfile(os.path.join("temp", file))
                 break
+
+    def set_file(self,file):
+        self.file = file
 
 if __name__ == "__main__":
     backend = Backend()
