@@ -10,10 +10,9 @@
 
 
 - [x] PDF splitting
-- [ ] Browse Path
+- [x] Browse Path
 - [x] GUI
 - [x] Backend
-- [ ] Skip Page
 - [ ] Printing
 - [ ] .exe
 
