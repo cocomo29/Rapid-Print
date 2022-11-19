@@ -1,35 +1,39 @@
 from pathlib import Path
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage, Label
-import webbrowser,os
+import webbrowser
+import os
 from backend import Backend
+from tkinter import filedialog
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(os.path.join("assets",'frame0'))
+ASSETS_PATH = OUTPUT_PATH / Path(os.path.join("assets", 'frame0'))
 
 if not os.path.exists("temp"):
     os.mkdir(os.getcwd() + "\\temp")
 
+
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
+
 
 window = Tk()
 
 window.geometry("862x519")
-window.configure(bg = "#FFFFFF")
+window.configure(bg="#FFFFFF")
 window.iconbitmap(relative_to_assets("logo.ico"))
 
 
 canvas = Canvas(
     window,
-    bg = "#FFFFFF",
-    height = 519,
-    width = 862,
-    bd = 0,
-    highlightthickness = 0,
-    relief = "ridge"
+    bg="#FFFFFF",
+    height=519,
+    width=862,
+    bd=0,
+    highlightthickness=0,
+    relief="ridge"
 )
 
-canvas.place(x = 0, y = 0)
+canvas.place(x=0, y=0)
 canvas.create_rectangle(
     1.1368683772161603e-13,
     7.105427357601002e-15,
@@ -142,9 +146,12 @@ entry_3 = Entry(
     font=("Bahnschrift SemiLight", 13 * -1)
 )
 
+
 def onClick():
-    worker = Backend(int(entry_1.get()),int(entry_2.get()))
+    worker = Backend(int(entry_1.get()), int(entry_2.get()))
+    worker.set_file(filename if filename else "rapid.pdf")
     worker.Print()
+
 
 button_image_1 = PhotoImage(
     file=relative_to_assets("button_1.png"))
@@ -152,7 +159,7 @@ button_1 = Button(
     image=button_image_1,
     borderwidth=0,
     highlightthickness=0,
-    
+
     command=onClick,
     relief="flat"
 )
@@ -161,6 +168,30 @@ button_1.place(
     x=556.9999999999999,
     y=401.0,
     width=180.0,
+    height=55.0
+)
+
+
+def browse():
+    global filename
+    filename = filedialog.askopenfilename(initialdir="/", title="Select A File", filetypes=(("PDF Files", "*.pdf"), ("All Files", "*.*")))
+
+browse_image_1 = PhotoImage(
+    file=relative_to_assets("pick.png")
+)
+browse_1 = Button(
+    image=browse_image_1,
+    borderwidth=0,
+    highlightthickness=0,
+
+    command=browse,
+    relief="flat"
+)
+
+browse_1.place(
+    x=750,
+    y=401.0,
+    width=100,
     height=55.0
 )
 
@@ -178,15 +209,16 @@ entry_3.place(
     height=59.0
 )
 
+
 def callback(url):
     webbrowser.open_new(url)
 
 
-
-link1 = Label(window, cursor="hand2", text="made by cocomo with ❤️", bg="#00AFFD",font=("Inter Medium", 14 * -1), fg="white")
+link1 = Label(window, cursor="hand2", text="made by cocomo with ❤️",
+              bg="#00AFFD", font=("Inter Medium", 14 * -1), fg="white")
 # # link1['bg'] = li.master['bg']
 # # link1.wm_attributes('-transparentcolor','black')
-link1.place(x=121.99999999999989, y=456.0,anchor="nw")
+link1.place(x=121.99999999999989, y=456.0, anchor="nw")
 link1.bind("<Button-1>", lambda e: callback("github.com/cocomo29"))
 
 image_image_1 = PhotoImage(
@@ -199,6 +231,6 @@ image_1 = canvas.create_image(
 
 
 if __name__ == "__main__":
-    window.title("Rapid Print") 
+    window.title("Rapid Print")
     window.resizable(False, False)
     window.mainloop()
