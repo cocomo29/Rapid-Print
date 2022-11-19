@@ -16,6 +16,7 @@ window = Tk()
 
 window.geometry("862x519")
 window.configure(bg = "#FFFFFF")
+window.iconbitmap(relative_to_assets("logo.ico"))
 
 
 canvas = Canvas(
@@ -142,8 +143,8 @@ entry_3 = Entry(
 )
 
 def onClick():
-    worker = salad(int(entry_1.get()),int(entry_2.get()))
-    worker.work()
+    worker = Backend(int(entry_1.get()),int(entry_2.get()))
+    worker.Print()
 
 button_image_1 = PhotoImage(
     file=relative_to_assets("button_1.png"))
