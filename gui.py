@@ -69,14 +69,14 @@ canvas.create_rectangle(
     fill="#FCFCFC",
     outline="")
 
-entry_image_1 = PhotoImage(
+entryImage1 = PhotoImage(
     file=relative_to_assets("entry_1.png"))
 entry_bg_1 = canvas.create_image(
     650.4999999999999,
     167.5,
-    image=entry_image_1
+    image=entryImage1
 )
-entry_1 = Entry(
+entry1 = Entry(
     bd=0,
     bg="#80D7FE",
     fg="#000716",
@@ -85,31 +85,31 @@ entry_1 = Entry(
 )
 
 # def delete_text1(event):
-#     if entry_1.get() == "First Page":
-#         entry_1.delete(0, "end")
+#     if entry1.get() == "First Page":
+#         entry1.delete(0, "end")
 #     else:
-#         entry_1.insert(0, "First Page")
+#         entry1.insert(0, "First Page")
 
-entry_1.insert(0, "First Page")
-# entry_1.bind("<Button-1>", delete_text1)
-entry_1.bind("<Button-1>", lambda event: entry_1.delete(0, "end"))
+entry1.insert(0, "First Page")
+# entry1.bind("<Button-1>", delete_text1)
+entry1.bind("<Button-1>", lambda event: entry1.delete(0, "end"))
 
-entry_1.place(
+entry1.place(
     x=489.9999999999999,
     y=137.0,
     width=321.0,
     height=59.0
 )
-# entry_1.configure(font=("Roboto", 14 * -1))
+# entry1.configure(font=("Roboto", 14 * -1))
 
-entry_image_2 = PhotoImage(
+entryImage2 = PhotoImage(
     file=relative_to_assets("entry_2.png"))
 entry_bg_2 = canvas.create_image(
     650.4999999999999,
     248.5,
-    image=entry_image_2
+    image=entryImage2
 )
-entry_2 = Entry(
+entry2 = Entry(
     bd=0,
     bg="#80D7FE",
     fg="#000716",
@@ -118,27 +118,27 @@ entry_2 = Entry(
 )
 
 # def delete_text2(event):
-#     entry_2.delete(0, "end")
+#     entry2.delete(0, "end")
 
-entry_2.insert(0, "Last Page")
-# entry_2.bind("<Button-1>", delete_text2)
-entry_2.bind("<Button-1>", lambda event: entry_2.delete(0, "end"))
+entry2.insert(0, "Last Page")
+# entry2.bind("<Button-1>", delete_text2)
+entry2.bind("<Button-1>", lambda event: entry2.delete(0, "end"))
 
-entry_2.place(
+entry2.place(
     x=489.9999999999999,
     y=218.0,
     width=321.0,
     height=59.0
 )
 
-entry_image_3 = PhotoImage(
+entryImage3 = PhotoImage(
     file=relative_to_assets("entry_3.png"))
 entry_bg_3 = canvas.create_image(
     650.4999999999999,
     329.5,
-    image=entry_image_3
+    image=entryImage3
 )
-entry_3 = Entry(
+entry3 = Entry(
     bd=0,
     bg="#80D7FE",
     fg="#000716",
@@ -148,15 +148,15 @@ entry_3 = Entry(
 
 
 def onClick():
-    worker = Backend(int(entry_1.get()), int(entry_2.get()))
+    worker = Backend(int(entry1.get()), int(entry2.get()))
     worker.set_file(filename if filename else "rapid.pdf")
     worker.Print()
 
 
-button_image_1 = PhotoImage(
+buttonImage1 = PhotoImage(
     file=relative_to_assets("button_1.png"))
 button_1 = Button(
-    image=button_image_1,
+    image=buttonImage1,
     borderwidth=0,
     highlightthickness=0,
 
@@ -176,11 +176,11 @@ def browse():
     global filename
     filename = filedialog.askopenfilename(initialdir="/", title="Select A File", filetypes=(("PDF Files", "*.pdf"), ("All Files", "*.*")))
 
-browse_image_1 = PhotoImage(
-    file=relative_to_assets("pick.png")
+browseImage = PhotoImage(
+    file=relative_to_assets("pick2.png")
 )
-browse_1 = Button(
-    image=browse_image_1,
+browse = Button(
+    image=browseImage,
     borderwidth=0,
     highlightthickness=0,
 
@@ -188,21 +188,19 @@ browse_1 = Button(
     relief="flat"
 )
 
-browse_1.place(
-    x=750,
-    y=401.0,
-    width=100,
-    height=55.0
+browse.place(
+    x=760,
+    y=305.5,
 )
 
 # def delete_text3(event):
-#     entry_3.delete(0, "end")
+#     entry3.delete(0, "end")
 
-entry_3.insert(0, "Skip Page (optional)")
-# entry_3.bind("<Button-1>", delete_text3)
-entry_3.bind("<Button-1>", lambda event: entry_3.delete(0, "end"))
+entry3.insert(0, "Choose File")
+# entry3.bind("<Button-1>", delete_text3)
+entry3.bind("<Button-1>", lambda event: entry3.delete(0, "end"))
 
-entry_3.place(
+entry3.place(
     x=489.9999999999999,
     y=299.0,
     width=321.0,
