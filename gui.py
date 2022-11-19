@@ -174,7 +174,12 @@ button_1.place(
 
 def browse():
     global filename
-    filename = filedialog.askopenfilename(initialdir="/", title="Select A File", filetypes=(("PDF Files", "*.pdf"), ("All Files", "*.*")))
+    try:
+        filename = filedialog.askopenfilename(initialdir="Desktop", title="Select A File", filetypes=(("PDF Files", "*.pdf"), ("All Files", "*.*")))
+        entry3.insert(0, filename)
+    except:
+        filename = filedialog.askopenfilename(initialdir="/", title="Select A File", filetypes=(("PDF Files", "*.pdf"), ("All Files", "*.*")))
+        entry3.insert(0, filename)
 
 browseImage = PhotoImage(
     file=relative_to_assets("pick2.png")
