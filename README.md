@@ -7,6 +7,7 @@ GUI to simplify printing on campus
 - [ ] Browse Path
 - [ ] Complete GUI
 - [ ] Complete Backend
+- [ ] Skip Path
 - [ ] Printing
 - [ ] .exe
 
