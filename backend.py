@@ -14,7 +14,6 @@ class Backend:
     def divider(self):
         with open(self.file if self.file else 'rapid.pdf', "rb") as f:
             reader = PdfFileReader(f)
-            writer = PdfFileWriter()
             pdfs = []
             pages_in_pdf = len(reader.pages)
             
@@ -33,7 +32,6 @@ class Backend:
 
     def Print(self):
         self.divider()
-        # time.sleep(1)
         for file in os.listdir("temp"):
             if file.endswith(".pdf"):
                 os.startfile(os.path.join("temp", file))
@@ -42,8 +40,7 @@ class Backend:
     def set_file(self,file):
         self.file = file
 
-if __name__ == "__main__":
-    backend = Backend()
+
 
 #fix broken pdf with qpdf
 #qpdf --repair-file broken.pdf fixed.pdf

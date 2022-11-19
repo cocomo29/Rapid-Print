@@ -149,7 +149,7 @@ entry_3 = Entry(
 
 def onClick():
     worker = Backend(int(entry_1.get()), int(entry_2.get()))
-    worker.set_file(filename if filename else "pages.pdf")
+    worker.set_file(filename if filename else "rapid.pdf")
     worker.Print()
 
 
@@ -175,7 +175,7 @@ button_1.place(
 def browse():
     global filename
     filename = filedialog.askopenfilename(initialdir="/", title="Select A File", filetypes=(("PDF Files", "*.pdf"), ("All Files", "*.*")))
-    print(filename)
+
 browse_image_1 = PhotoImage(
     file=relative_to_assets("pick.png")
 )
