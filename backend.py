@@ -1,62 +1,47 @@
 from PyPDF2 import PdfFileWriter, PdfFileReader
 import os
-import time
+# import time
 # from gui import entries
 
-class Backend :
-    def __init__(self, start, end) -> None:
-        self.start = int(start)  # if not type(start) == str else 0
-        self.end = int(end)  # if not type(end) == str else 0
-        self.pages = [i for i in range(start - 1, end)]
-        self.hrn()
-        self.div10()
 
-    def hrn(self):
-        with open("pages.pdf", "rb") as f:
+class Backend:
+    def __init__(self,start,end) -> None:
+        self.start = int(start) if not type(start) == str else 0
+        self.end = int(end) if not type(end) == str else 0
+        self.pages = [i for i in range(start, end)]
+
+    def divider(self):
+        with open("rapid.pdf", "rb") as f:
             reader = PdfFileReader(f)
             writer = PdfFileWriter()
             # rest_writer = PdfFileWriter()
-
-            for page in range(len(reader.pages)):
-                if page in self.pages:
-                    writer.addPage(reader.getPage(page))
-                # else:
-                #     rest_writer.addPage(reader.getPage(page))
-
-            # with open("temp/file.pdf", "wb") as f:
-            with open(os.path.join("temp", "file.pdf"), "wb") as f:
-                writer.write(f)
-
-            # with open(os.path.join("temp", "rest.pdf"), "wb") as f:
-            #     rest_writer.write(f)
-
-    def div10(self):
-        with open("pages.pdf", "rb") as f:
-            reader = PdfFileReader(f)
-            writer = PdfFileWriter()
-            rest_writer = PdfFileWriter()
             pdfs = []
             pages_in_pdf = len(reader.pages)
-            remaining = pages_in_pdf - self.end
+            # mid = pages_in_pdf // 2
+            
+            for i in range(0, pages_in_pdf, 10):
+                writer = PdfFileWriter()
+                for j in range(i, i + 10):
+                    if j < self.end:
+                        writer.addPage(reader.getPage(j))
+                pdfs.append(writer)
 
-            for i in range(self.start, self.end):
-                writer.addPage(reader.getPage(i))
-            for i in range(self.end, pages_in_pdf):
-                rest_writer.addPage(reader.getPage(i))
+            for i, pdf in enumerate(pdfs):
+                with open(f"temp/file{i+1}.pdf", "wb") as f:
+                    pdf.write(f)
+            
+        
 
-            with open("temp/{}.pdf".format(self.start), "wb") as f:
-                writer.write(f)
-
-            with open("temp/{}.pdf".format(self.end), "wb") as f:
-                rest_writer.write(f)
-
-    def work(self):
-        self.div10()
-        time.sleep(1)
+    def Print(self):
+        self.divider()
+        # time.sleep(1)
         for file in os.listdir("temp"):
             if file.endswith(".pdf"):
                 os.startfile(os.path.join("temp", file))
-
+                break
 
 if __name__ == "__main__":
-    backend  = Backend ()
+    backend = Backend()
+
+#fix broken pdf with qpdf
+#qpdf --repair-file broken.pdf fixed.pdf
