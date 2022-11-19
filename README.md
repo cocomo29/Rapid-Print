@@ -13,7 +13,7 @@
 - [ ] Browse Path
 - [x] GUI
 - [x] Backend
-- [ ] Skip Path
+- [ ] Skip Page
 - [ ] Printing
 - [ ] .exe
 
