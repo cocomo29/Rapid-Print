@@ -1,12 +1,10 @@
 # Rapid-Print
 GUI to simplify printing on campus
 
-- [x] Base GUI
-- [x] Base Backend
 - [x] PDF splitting
 - [ ] Browse Path
-- [ ] Complete GUI
-- [ ] Complete Backend
+- [x] GUI
+- [x] Backend
 - [ ] Skip Path
 - [ ] Printing
 - [ ] .exe
